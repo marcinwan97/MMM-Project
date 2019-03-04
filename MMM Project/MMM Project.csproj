@@ -135,5 +135,14 @@
   <ItemGroup>
     <Resource Include="schemat.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="sinus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="skok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="trojkat.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
