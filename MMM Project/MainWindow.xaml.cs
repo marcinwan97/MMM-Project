@@ -20,9 +20,42 @@ namespace MMM_Project
     /// </summary>
     public partial class MainWindow : Window
     {
+        double a1, a0, b2, b1, b0;
         public MainWindow()
         {
+            
+
             InitializeComponent();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            a0 = double.Parse(ta0.Text);
+            a1 = double.Parse(ta1.Text);
+            b0 = double.Parse(tb0.Text);
+            b1 = double.Parse(tb1.Text);
+            b2 = double.Parse(tb2.Text);
+
+
+            Wynik W = new Wynik();            
+            W.tekst.Content = a0;
+            W.ShowDialog();
+
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

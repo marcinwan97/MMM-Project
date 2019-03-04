@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMM_Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="Ł&amp;M" Height="507.475" Width="717.525">
+    <Grid Height="476" VerticalAlignment="Top" Margin="0,0,2,0">
+        <TextBox x:Name="ta1" HorizontalAlignment="Center" Height="25" Margin="38,293,544,158" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" TextChanged="TextBox_TextChanged" Text="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Button Content="Start" HorizontalAlignment="Center" Margin="289,433,340,20" VerticalAlignment="Center" Width="79" RenderTransformOrigin="0.51,-0.178" Click="Button_Click" Height="23"/>
+        <Label Content="a1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="9,294,675,157" Height="25" Width="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Margin="124,41,128,298" Source="image.jpg" Stretch="Fill"/>
+        <Label Content="Nazwa programu" HorizontalAlignment="Center" Margin="255,10,254,440" VerticalAlignment="Center" Width="199" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="ta0" HorizontalAlignment="Center" Height="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" Margin="38,323,544,128" TextChanged="TextBox_TextChanged_1" Text="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="tb2" HorizontalAlignment="Center" Height="26" Margin="38,353,544,97" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" Text="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="tb1" HorizontalAlignment="Center" Height="26" Margin="38,384,544,66" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" Text="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="a0" HorizontalAlignment="Center" Margin="11,323,673,128" VerticalAlignment="Center" Height="25" Width="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="b2" HorizontalAlignment="Center" Margin="8,353,674,97" VerticalAlignment="Center" Height="26" RenderTransformOrigin="0.507,1.195" Width="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="b1" HorizontalAlignment="Center" Margin="9,384,674,66" VerticalAlignment="Center" Height="26" Width="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="b0" HorizontalAlignment="Center" Margin="10,415,673,36" VerticalAlignment="Center" Height="25" Width="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="tb0" HorizontalAlignment="Center" Height="25" Margin="38,416,544,35" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" Text="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="Zmienne Pid&#xD;&#xA;" HorizontalAlignment="Center" Margin="55,259,573,183" VerticalAlignment="Center" Height="34" Width="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
     </Grid>
 </Window>
