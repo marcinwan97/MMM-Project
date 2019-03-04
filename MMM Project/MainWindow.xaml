@@ -5,21 +5,74 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMM_Project"
         mc:Ignorable="d"
-        Title="Ł&amp;M" Height="507.475" Width="717.525">
-    <Grid Height="476" VerticalAlignment="Top" Margin="0,0,2,0">
-        <TextBox x:Name="ta1" HorizontalAlignment="Center" Height="25" Margin="38,293,544,158" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" TextChanged="TextBox_TextChanged" Text="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button Content="Start" HorizontalAlignment="Center" Margin="289,433,340,20" VerticalAlignment="Center" Width="79" RenderTransformOrigin="0.51,-0.178" Click="Button_Click" Height="23"/>
-        <Label Content="a1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="9,294,675,157" Height="25" Width="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Image Margin="124,41,128,298" Source="image.jpg" Stretch="Fill"/>
-        <Label Content="Nazwa programu" HorizontalAlignment="Center" Margin="255,10,254,440" VerticalAlignment="Center" Width="199" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="ta0" HorizontalAlignment="Center" Height="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" Margin="38,323,544,128" TextChanged="TextBox_TextChanged_1" Text="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tb2" HorizontalAlignment="Center" Height="26" Margin="38,353,544,97" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" Text="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tb1" HorizontalAlignment="Center" Height="26" Margin="38,384,544,66" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" Text="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label Content="a0" HorizontalAlignment="Center" Margin="11,323,673,128" VerticalAlignment="Center" Height="25" Width="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label Content="b2" HorizontalAlignment="Center" Margin="8,353,674,97" VerticalAlignment="Center" Height="26" RenderTransformOrigin="0.507,1.195" Width="26" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label Content="b1" HorizontalAlignment="Center" Margin="9,384,674,66" VerticalAlignment="Center" Height="26" Width="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label Content="b0" HorizontalAlignment="Center" Margin="10,415,673,36" VerticalAlignment="Center" Height="25" Width="25" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tb0" HorizontalAlignment="Center" Height="25" Margin="38,416,544,35" TextWrapping="Wrap" VerticalAlignment="Center" Width="126" Text="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label Content="Zmienne Pid&#xD;&#xA;" HorizontalAlignment="Center" Margin="55,259,573,183" VerticalAlignment="Center" Height="34" Width="80" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        Title="Ł&amp;M" Height="650" Width="1000" ResizeMode="NoResize">
+    <Grid Height="620" VerticalAlignment="Top" Margin="0,0,0,0">
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="FontWeight" Value="Bold"></Setter>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Background" Value="Lavender"/>
+                <Setter Property="Margin" Value="50,10,10,10"/>
+                <Setter Property="Width" Value="60"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="TextAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="-80,10,10,10"/>
+                <Setter Property="Width" Value="60"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="TextAlignment" Value="Right"/>
+            </Style>
+            
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image x:Name="schemat" Source="schemat.png" Grid.Row="0" HorizontalAlignment="Center" Height="150" Margin="100,10,100,0" Grid.ColumnSpan="3" VerticalAlignment="Top" Width="520" />
+        <Label Content="Sygnał wejściowy" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="auto" FontSize="20"/>
+        <Label Content="Nastawy regulatora PID" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="auto" Grid.Column="1" FontSize="20"/>
+        <Label Content="Parametry transmitancji" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="auto" Grid.Column="2" FontSize="20"/>
+        <Image x:Name="Go" Source="Go.png" HorizontalAlignment="Center" Height="60" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="190" Grid.Column="2"/>
+        <Image x:Name="Gpid" Source="Gpid.png" HorizontalAlignment="Center" Height="50" Margin="0,0,0,0" VerticalAlignment="Center" Width="280" Grid.Column="1" Grid.Row="2"/>
+        
+        <TextBox x:Name="kpBox" Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" Text="1"/>
+        <TextBlock Grid.Column="1" Grid.Row="3">k<Run BaselineAlignment="Subscript" FontSize="12">p</Run>=</TextBlock>
+        <TextBox x:Name="TiBox" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" Text="1"/>
+        <TextBlock Grid.Column="1" Grid.Row="4">T<Run BaselineAlignment="Subscript" FontSize="12">i</Run>=</TextBlock>
+        <TextBox x:Name="TdBox" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap" Text="1"/>
+        <TextBlock Grid.Column="1" Grid.Row="5">T<Run BaselineAlignment="Subscript" FontSize="12">d</Run>=</TextBlock>
+        <TextBox x:Name="KdBox" Grid.Column="1" Grid.Row="6" TextWrapping="Wrap" Text="1"/>
+        <TextBlock Grid.Column="1" Grid.Row="6">K<Run BaselineAlignment="Subscript" FontSize="12">d</Run>=</TextBlock>
+
+        <TextBox x:Name="a1Box" Grid.Column="2" Grid.Row="3" TextWrapping="Wrap" Text="1"/>
+        <TextBlock Grid.Column="2" Grid.Row="3">a<Run BaselineAlignment="Subscript" FontSize="12">1</Run>=</TextBlock>
+        <TextBox x:Name="a0Box" Grid.Column="2" Grid.Row="4" TextWrapping="Wrap" Text="1"/>
+        <TextBlock Grid.Column="2" Grid.Row="4">a<Run BaselineAlignment="Subscript" FontSize="12">0</Run>=</TextBlock>
+        <TextBox x:Name="b2Box" Grid.Column="2" Grid.Row="5" TextWrapping="Wrap" Text="1"/>
+        <TextBlock Grid.Column="2" Grid.Row="5">b<Run BaselineAlignment="Subscript" FontSize="12">2</Run>=</TextBlock>
+        <TextBox x:Name="b1Box" Grid.Column="2" Grid.Row="6" TextWrapping="Wrap" Text="1"/>
+        <TextBlock Grid.Column="2" Grid.Row="6">b<Run BaselineAlignment="Subscript" FontSize="12">1</Run>=</TextBlock>
+        <TextBox x:Name="b0Box" Grid.Column="2" Grid.Row="7" TextWrapping="Wrap" Text="1"/>
+        <TextBlock Grid.Column="2" Grid.Row="7">b<Run BaselineAlignment="Subscript" FontSize="12">0</Run>=</TextBlock>
     </Grid>
+    
 </Window>
