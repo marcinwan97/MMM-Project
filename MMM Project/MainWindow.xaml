@@ -48,7 +48,7 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Image x:Name="schemat" Source="schemat.png" Grid.Row="0" HorizontalAlignment="Center" Height="150" Margin="100,10,100,0" Grid.ColumnSpan="3" VerticalAlignment="Top" Width="520" />
+        <Image x:Name="schemat" Source="schemat.png" Grid.Row="0" HorizontalAlignment="Center" Height="150" Margin="300,10,100,0" Grid.ColumnSpan="3" VerticalAlignment="Top" Width="520" />
         <Label Content="Sygnał wejściowy" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="auto" FontSize="20"/>
         <Label Content="Nastawy regulatora PID" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="auto" Grid.Column="1" FontSize="20"/>
         <Label Content="Parametry transmitancji" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="auto" Grid.Column="2" FontSize="20"/>
@@ -74,7 +74,12 @@
         <TextBlock Grid.Column="2" Grid.Row="6">b<Run BaselineAlignment="Subscript" FontSize="12">1</Run>=</TextBlock>
         <TextBox x:Name="b0Box" Grid.Column="2" Grid.Row="7" TextWrapping="Wrap" Text="1"/>
         <TextBlock Grid.Column="2" Grid.Row="7">b<Run BaselineAlignment="Subscript" FontSize="12">0</Run>=</TextBlock>
-        
+
+        <TextBox x:Name="hBox" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap" Text="1" Margin="50,-30,10,10"/>
+        <TextBlock Grid.Column="0" Grid.Row="0" Margin="-80,-30,10,10">krok =</TextBlock>
+        <TextBox x:Name="tmaxBox" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap" Text="1" Margin="50,70,10,10"/>
+        <TextBlock Grid.Column="0" Grid.Row="0" Margin="10,95,180.2,37.4" Width="141">czas symulacji =</TextBlock>
+
         <Image Margin="0,0,0,-30" Grid.Row="2" Source="sinus.png" Width="80"/>
         <Image Margin="-200,0,0,-30" Grid.Row="2" Source="skok.png" Width="80"/>
         <Image Margin="200,0,0,-30" Grid.Row="2" Source="trojkat.png" Width="80"/>
@@ -87,7 +92,7 @@
         <TextBlock Grid.Column="0" Grid.Row="5" Width="110" Margin="-135,0,0,0" >Czas trwania=</TextBlock>
         <TextBox x:Name="wBox" Grid.Column="0" Grid.Row="6" TextWrapping="Wrap" Text="1" />
         <TextBlock Grid.Column="0" Grid.Row="6" Width="120" Margin="-145,0,0,0" >Pulsacja=</TextBlock>
-        
+
         <Button x:Name="Button" Content="Oblicz" Grid.Column="1" HorizontalAlignment="Center" Margin="0,15,0,0" Grid.Row="8" VerticalAlignment="Center" Width="100" Height="50" Foreground="#FF0F0F0F" Click="Button_Click" FontWeight="Bold" FontSize="16" FontStyle="Italic">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
