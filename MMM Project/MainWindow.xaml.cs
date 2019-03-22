@@ -26,6 +26,7 @@ namespace MMM_Project
         double ampl, t, w;                  // parametry wejscia
         List<double> input;           // stablicowane wejscie
         double c0, c1, c2, c3, d0, d1, d2, d3, d4;  // parametry transmitancji wypadkowej
+        List<double> wejscie = new List<double>();
         public MainWindow()
         {
             
@@ -50,10 +51,13 @@ namespace MMM_Project
                 ampl = double.Parse(amplBox.Text);
                 t = double.Parse(tBox.Text);
                 w = double.Parse(wBox.Text);
-                Transmitancja_Wypadkowa();
+                
                 Tablicuj_Wejscie();
+                Transmitancja_Wypadkowa();
+                int koniec4 = 0;// półapka=============================================
             }
             catch { MessageBox.Show("Niewłaściwe parametry!"); }
+            wejscie.Clear();
         }
 
         private void Transmitancja_Wypadkowa()
@@ -78,12 +82,26 @@ namespace MMM_Project
 
         private void Tablicuj_Skok()
         {
-            ;
+            for (double i=0; i<= tmax+h ; i=i+h )
+            {
+                if (i < t)
+                {
+                    wejscie.Add(ampl);
+                }
+                else
+                {
+                    wejscie.Add(0);
+                }
+                
+            }
         }
 
         private void Tablicuj_Sinus()
         {
-            ;
+            for (double i = 0; i <= tmax+h; i = i + h)
+            {
+                wejscie.Add(ampl * Math.Sin(w * i));
+            }
         }
 
         private void Tablicuj_Trojkat()
