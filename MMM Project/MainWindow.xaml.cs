@@ -24,9 +24,17 @@ namespace MMM_Project
         double kp, Ti, Td, Kd;              // nastawy regulatora PID
         double h, tmax;                     // krok i czas symulacji
         double ampl, t, w;                  // parametry wejscia
-        List<double> input;           // stablicowane wejscie
         double c0, c1, c2, c3, d0, d1, d2, d3, d4;  // parametry transmitancji wypadkowej
         List<double> wejscie = new List<double>();
+        List<double> calka_we1 = new List<double>();
+        List<double> calka_we2 = new List<double>();
+        List<double> calka_we3 = new List<double>();
+        List<double> calka_we4 = new List<double>();
+        List<double> calka_wy1 = new List<double>();
+        List<double> calka_wy2 = new List<double>();
+        List<double> calka_wy3 = new List<double>();
+        List<double> calka_wy4 = new List<double>();
+        List<double> wyjscie = new List<double>();
         public MainWindow()
         {
             
@@ -51,13 +59,15 @@ namespace MMM_Project
                 ampl = double.Parse(amplBox.Text);
                 t = double.Parse(tBox.Text);
                 w = double.Parse(wBox.Text);
-                
+
                 Tablicuj_Wejscie();
-                Transmitancja_Wypadkowa();
-                int koniec4 = 0;// półapka=============================================
+                Transmitancja_Wypadkowa();                  // G=(2*s^3+4*s^2+3*s+1)/(s^4+4*s^3+6*s^2+4*s+1) dla parametrów =1
             }
             catch { MessageBox.Show("Niewłaściwe parametry!"); }
-            wejscie.Clear();
+            Calkuj_Wejscie();
+            Licz_Wyjscie();
+            int stop = 0;                                   // miejsce na pułapkę
+            Czyszczenie();
         }
 
         private void Transmitancja_Wypadkowa()
@@ -78,6 +88,38 @@ namespace MMM_Project
             if (Rskok.IsChecked == true) Tablicuj_Skok();
             else if (Rsin.IsChecked == true) Tablicuj_Sinus();
             else Tablicuj_Trojkat();
+        }
+
+        private void Calkuj_Wejscie()
+        {
+            int j = 1;
+            calka_we1.Add(0);
+            for (double i = 0; i <= tmax; i = i + h)
+            {
+                calka_we1.Add(calka_we1[j-1]+wejscie[j]*h);
+                j++;
+            }
+            j = 1;
+            calka_we2.Add(0);
+            for (double i = 0; i <= tmax; i = i + h)
+            {
+                calka_we2.Add(calka_we2[j-1]+calka_we1[j] * h);
+                j++;
+            }
+            j = 1;
+            calka_we3.Add(0);
+            for (double i = 0; i <= tmax; i = i + h)
+            {
+                calka_we3.Add(calka_we3[j-1]+calka_we2[j] * h);
+                j++;
+            }
+            j = 1;
+            calka_we4.Add(0);
+            for (double i = 0; i <= tmax; i = i + h)
+            {
+                calka_we4.Add(calka_we4[j-1]+calka_we3[j] * h);
+                j++;
+            }
         }
 
         private void Tablicuj_Skok()
@@ -109,5 +151,39 @@ namespace MMM_Project
             ;
         }
 
+        private void Licz_Wyjscie()
+        {
+            calka_wy1.Add(0);
+            calka_wy2.Add(0);
+            calka_wy3.Add(0);
+            calka_wy4.Add(0);
+            wyjscie.Add(0);
+            double wynik = 0;
+            int j = 1;
+            for (double i = 0; i <= tmax; i = i + h)
+            {
+                calka_wy1.Add(calka_wy1[j - 1] + wyjscie[j-1] * h);
+                calka_wy2.Add(calka_wy2[j - 1] + calka_wy1[j] * h);
+                calka_wy3.Add(calka_wy3[j - 1] + calka_wy2[j] * h);
+                calka_wy4.Add(calka_wy4[j - 1] + calka_wy3[j] * h);
+                wynik = c3 / d4 * calka_we1[j] + c2 / d4 * calka_we2[j] + c1 / d4 * calka_we3[j] + c0 / d4 * calka_we4[j] - d3/d4*calka_wy1[j] - d2/d4*calka_wy2[j] - d1/d4*calka_wy3[j] - d0/d4*calka_wy4[j];
+                wyjscie.Add(wynik);
+                j++;
+            }
+        }
+
+        private void Czyszczenie()
+        {
+            wejscie.Clear();
+            wyjscie.Clear();
+            calka_we1.Clear();
+            calka_we2.Clear();
+            calka_we3.Clear();
+            calka_we4.Clear();
+            calka_wy1.Clear();
+            calka_wy2.Clear();
+            calka_wy3.Clear();
+            calka_wy4.Clear();
+        }
     }
 }
