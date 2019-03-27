@@ -83,7 +83,7 @@
         <Image Margin="0,0,0,-30" Grid.Row="2" Source="sinus.png" Width="80"/>
         <Image Margin="-200,0,0,-30" Grid.Row="2" Source="skok.png" Width="80"/>
         <Image Margin="200,0,0,-30" Grid.Row="2" Source="trojkat.png" Width="80"/>
-        <RadioButton x:Name="Rskok" Content="" HorizontalAlignment="Center" Margin="-200,0,0,0" Grid.Row="3" VerticalAlignment="Center" />
+        <RadioButton x:Name="Rskok" Content="" HorizontalAlignment="Center" Margin="-200,0,0,0" Grid.Row="3" VerticalAlignment="Center" IsChecked="true"/>
         <RadioButton x:Name="Rsin" Content="" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="3" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <RadioButton x:Name="Rtroikat" Content="" HorizontalAlignment="Center" Margin="200,0,0,0" Grid.Row="3" VerticalAlignment="Center" />
         <TextBox x:Name="amplBox" Grid.Column="0" Grid.Row="4" TextWrapping="Wrap" Text="1" />

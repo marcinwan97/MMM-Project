@@ -66,6 +66,10 @@ namespace MMM_Project
             catch { MessageBox.Show("Niewłaściwe parametry!"); }
             Calkuj_Wejscie();
             Licz_Wyjscie();
+            Output output = new Output();
+            output.SetData(wejscie, wyjscie);
+            output.Show();
+
             int stop = 0;                                   // miejsce na pułapkę
             Czyszczenie();
         }
