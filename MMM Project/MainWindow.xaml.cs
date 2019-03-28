@@ -45,27 +45,26 @@ namespace MMM_Project
         {
             try
             {
-                h = double.Parse(hBox.Text);
-                tmax = double.Parse(tmaxBox.Text);
-                a0 = double.Parse(a0Box.Text);
-                a1 = double.Parse(a1Box.Text);
-                b0 = double.Parse(b0Box.Text);
-                b1 = double.Parse(b1Box.Text);
-                b2 = double.Parse(b2Box.Text);
-                kp = double.Parse(kpBox.Text);
-                Ti = double.Parse(TiBox.Text);
-                Td = double.Parse(TdBox.Text);
-                Kd = double.Parse(KdBox.Text);
-                ampl = double.Parse(amplBox.Text);
-                t = double.Parse(tBox.Text);
-                w = double.Parse(wBox.Text);
-
-                Tablicuj_Wejscie();
-                Transmitancja_Wypadkowa();                  // G=(2*s^3+4*s^2+3*s+1)/(s^4+4*s^3+6*s^2+4*s+1) dla parametrów =1
+                h = NaLiczbe(hBox.Text);
+                tmax = NaLiczbe(tmaxBox.Text);
+                a0 = NaLiczbe(a0Box.Text);
+                a1 = NaLiczbe(a1Box.Text);
+                b0 = NaLiczbe(b0Box.Text);
+                b1 = NaLiczbe(b1Box.Text);
+                b2 = NaLiczbe(b2Box.Text);
+                kp = NaLiczbe(kpBox.Text);
+                Ti = NaLiczbe(TiBox.Text);
+                Td = NaLiczbe(TdBox.Text);
+                Kd = NaLiczbe(KdBox.Text);
+                ampl = NaLiczbe(amplBox.Text);
+                t = NaLiczbe(tBox.Text);
+                w = NaLiczbe(wBox.Text); ;
+                TablicujWejscie();
+                TransmitancjaWypadkowa();                  // G=(2*s^3+4*s^2+3*s+1)/(s^4+4*s^3+6*s^2+4*s+1) dla parametrów =1
             }
             catch { MessageBox.Show("Niewłaściwe parametry!"); }
-            Calkuj_Wejscie();
-            Licz_Wyjscie();
+            CalkujWejscie();
+            LiczWyjscie();
             Output output = new Output();
             output.SetData(wejscie, wyjscie);
             output.Show();
@@ -74,7 +73,12 @@ namespace MMM_Project
             Czyszczenie();
         }
 
-        private void Transmitancja_Wypadkowa()
+        private double NaLiczbe(string wpisane)
+        {
+            return double.Parse(wpisane.Replace('.', ','));
+        }
+
+        private void TransmitancjaWypadkowa()
         {
             c3 = kp * a1 * Td * Ti / Kd + kp * a1 * Td * Ti;
             c2 = kp * Ti * a1 + kp * Td * a1 / Kd + kp * Td * Ti * a0 / Kd + kp * Td * Ti * a0;
@@ -87,48 +91,48 @@ namespace MMM_Project
             d0 = kp * a0;
         }
 
-        private void Tablicuj_Wejscie()
+        private void TablicujWejscie()
         {
-            if (Rskok.IsChecked == true) Tablicuj_Skok();
-            else if (Rsin.IsChecked == true) Tablicuj_Sinus();
-            else Tablicuj_Trojkat();
+            if (Rskok.IsChecked == true) TablicujSkok();
+            else if (Rsin.IsChecked == true) TablicujSinus();
+            else TablicujTrojkat();
         }
 
-        private void Calkuj_Wejscie()
+        private void CalkujWejscie()
         {
             int j = 1;
             calka_we1.Add(0);
-            for (double i = 0; i <= tmax; i = i + h)
+            for (double i = 0; i < tmax-h; i = i + h)
             {
                 calka_we1.Add(calka_we1[j-1]+wejscie[j]*h);
                 j++;
             }
             j = 1;
             calka_we2.Add(0);
-            for (double i = 0; i <= tmax; i = i + h)
+            for (double i = 0; i < tmax-h; i = i + h)
             {
                 calka_we2.Add(calka_we2[j-1]+calka_we1[j] * h);
                 j++;
             }
             j = 1;
             calka_we3.Add(0);
-            for (double i = 0; i <= tmax; i = i + h)
+            for (double i = 0; i < tmax-h; i = i + h)
             {
                 calka_we3.Add(calka_we3[j-1]+calka_we2[j] * h);
                 j++;
             }
             j = 1;
             calka_we4.Add(0);
-            for (double i = 0; i <= tmax; i = i + h)
+            for (double i = 0; i < tmax-h; i = i + h)
             {
                 calka_we4.Add(calka_we4[j-1]+calka_we3[j] * h);
                 j++;
             }
         }
 
-        private void Tablicuj_Skok()
+        private void TablicujSkok()
         {
-            for (double i=0; i<= tmax+h ; i=i+h )
+            for (double i=0; i< tmax ; i=i+h )
             {
                 if (i < t)
                 {
@@ -142,20 +146,20 @@ namespace MMM_Project
             }
         }
 
-        private void Tablicuj_Sinus()
+        private void TablicujSinus()
         {
-            for (double i = 0; i <= tmax+h; i = i + h)
+            for (double i = 0; i < tmax; i = i + h)
             {
                 wejscie.Add(ampl * Math.Sin(w * i));
             }
         }
 
-        private void Tablicuj_Trojkat()
+        private void TablicujTrojkat()
         {
             ;
         }
 
-        private void Licz_Wyjscie()
+        private void LiczWyjscie()
         {
             calka_wy1.Add(0);
             calka_wy2.Add(0);
@@ -164,7 +168,7 @@ namespace MMM_Project
             wyjscie.Add(0);
             double wynik = 0;
             int j = 1;
-            for (double i = 0; i <= tmax; i = i + h)
+            for (double i = 0; i < tmax-h; i = i + h)
             {
                 calka_wy1.Add(calka_wy1[j - 1] + wyjscie[j-1] * h);
                 calka_wy2.Add(calka_wy2[j - 1] + calka_wy1[j] * h);
