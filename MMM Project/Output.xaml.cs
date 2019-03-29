@@ -17,33 +17,44 @@ using OxyPlot.Series;
 namespace MMM_Project
 {
     /// <summary>
-    /// Logika interakcji dla klasy Window1.xaml
+    /// Logika interakcji dla klasy Output.xaml
     /// </summary>
     public partial class Output : Window
     {
-        private MainViewModel viewModel;
         public PlotModel MyModel { get; private set; }
-        //public IList<OxyPlot.DataPoint> Points { get; private set; }
-        OxyPlot.Series.LineSeries punkty;
+        OxyPlot.Series.LineSeries PunktyWy;
+        OxyPlot.Series.LineSeries PunktyWe;
 
         public Output()
         {
-            //InitializeComponent();
+            ;
         }
 
         public void SetData(List<double> wejscie, List<double> wyjscie)
         {
-            viewModel = new MainViewModel();
-            DataContext = viewModel;
-            punkty = new LineSeries();
-            // viewModel.MyModel.Series.Add(new FunctionSeries(Math.Sin, 0, 10, 0.1, "Wyjście"));
-           // this.Points = new List<OxyPlot.DataPoint>();
-            for(int i=0; i<wyjscie.Count; i++)
+            MyModel = new PlotModel { Title = "Odpowiedź układu:" };
+            MyModel.DefaultColors = new List<OxyColor>
+            {
+                OxyColors.Blue,
+                OxyColors.Gray,
+            };
+            DataContext = this;
+            PunktyWy = new LineSeries();
+            PunktyWy.Title = "Wyjście";
+            PunktyWy.MarkerStroke = OxyPlot.OxyColors.Red;
+            PunktyWe = new LineSeries();
+            PunktyWe.Title = "Wejście";
+            
+            for (int i=0; i<wyjscie.Count; i++)
             {
                 OxyPlot.DataPoint o = new OxyPlot.DataPoint(i, wyjscie[i]);
-                punkty.Points.Add(o);
+                PunktyWy.Points.Add(o);
+                OxyPlot.DataPoint p = new OxyPlot.DataPoint(i, wejscie[i]);
+                PunktyWe.Points.Add(p);
             }
-            viewModel.MyModel.Series.Add(punkty);
+
+            MyModel.Series.Add(PunktyWy);
+            MyModel.Series.Add(PunktyWe);
             InitializeComponent();
         }
     }

@@ -81,7 +81,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MainViewModel.cs" />
     <Compile Include="Output.xaml.cs">
       <DependentUpon>Output.xaml</DependentUpon>
     </Compile>
@@ -161,6 +160,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="trojkat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gwyp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

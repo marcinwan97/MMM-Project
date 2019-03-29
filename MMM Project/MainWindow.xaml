@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MMM_Project"
         mc:Ignorable="d"
-        Title="Ł&amp;M" Height="650" Width="1000" ResizeMode="NoResize">
+        Title="Ł&amp;M" Height="650" Width="1000" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Height="620" VerticalAlignment="Top" Margin="0,0,0,0">
         <Grid.Resources>
             <Style TargetType="Label">
@@ -50,30 +50,52 @@
         </Grid.ColumnDefinitions>
         <Image x:Name="schemat" Source="schemat.png" Grid.Row="0" HorizontalAlignment="Center" Height="150" Margin="300,10,100,0" Grid.ColumnSpan="3" VerticalAlignment="Top" Width="520" />
         <Label Content="Sygnał wejściowy" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="auto" FontSize="20"/>
-        <Label Content="Nastawy regulatora PID" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="auto" Grid.Column="1" FontSize="20"/>
-        <Label Content="Parametry transmitancji" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="auto" Grid.Column="2" FontSize="20"/>
+        <Label x:Name="NastawyPID" Content="Nastawy regulatora PID" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="auto" Grid.Column="1" FontSize="20"/>
+        <Label x:Name="ParametryWyp" Content="Parametry transmitancji wypadkowej" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" Width="auto" Grid.Column="1" FontSize="20" Opacity="0"/>
+        <Label x:Name="ParametryO" Content="Parametry obiektu" HorizontalAlignment="Center" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="auto" Grid.Column="2" FontSize="20"/>
         <Image x:Name="Go" Source="Go.png" HorizontalAlignment="Center" Height="60" Margin="0,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="190" Grid.Column="2"/>
         <Image x:Name="Gpid" Source="Gpid.png" HorizontalAlignment="Center" Height="50" Margin="0,0,0,0" VerticalAlignment="Center" Width="280" Grid.Column="1" Grid.Row="2"/>
+        <Image x:Name="Gwyp" Source="Gwyp.png" HorizontalAlignment="Center" Height="60" Margin="0,0,0,0" VerticalAlignment="Center" Width="300" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Opacity="0"/>
 
         <TextBox x:Name="kpBox" Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" Text="1"/>
-        <TextBlock Grid.Column="1" Grid.Row="3">k<Run BaselineAlignment="Subscript" FontSize="12">p</Run>=</TextBlock>
+        <TextBlock x:Name="kpLabel" Grid.Column="1" Grid.Row="3">k<Run BaselineAlignment="Subscript" FontSize="12">p</Run>=</TextBlock>
         <TextBox x:Name="TiBox" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" Text="1"/>
-        <TextBlock Grid.Column="1" Grid.Row="4">T<Run BaselineAlignment="Subscript" FontSize="12">i</Run>=</TextBlock>
+        <TextBlock x:Name="TiLabel" Grid.Column="1" Grid.Row="4">T<Run BaselineAlignment="Subscript" FontSize="12">i</Run>=</TextBlock>
         <TextBox x:Name="TdBox" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap" Text="1"/>
-        <TextBlock Grid.Column="1" Grid.Row="5">T<Run BaselineAlignment="Subscript" FontSize="12">d</Run>=</TextBlock>
+        <TextBlock x:Name="TdLabel" Grid.Column="1" Grid.Row="5">T<Run BaselineAlignment="Subscript" FontSize="12">d</Run>=</TextBlock>
         <TextBox x:Name="KdBox" Grid.Column="1" Grid.Row="6" TextWrapping="Wrap" Text="1"/>
-        <TextBlock Grid.Column="1" Grid.Row="6">K<Run BaselineAlignment="Subscript" FontSize="12">d</Run>=</TextBlock>
+        <TextBlock x:Name="KdLabel" Grid.Column="1" Grid.Row="6">K<Run BaselineAlignment="Subscript" FontSize="12">d</Run>=</TextBlock>
+
+        <TextBox x:Name="c3Box" Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" Text="1" Opacity="0" IsEnabled="false" Panel.ZIndex="-1"/>
+        <TextBlock x:Name="c3Label" Grid.Column="1" Grid.Row="3" Opacity="0">c<Run BaselineAlignment="Subscript" FontSize="12">3</Run>=</TextBlock>
+        <TextBox x:Name="c2Box" Grid.Column="1" Grid.Row="4" TextWrapping="Wrap" Text="1" Opacity="0" IsEnabled="false" Panel.ZIndex="-1"/>
+        <TextBlock x:Name="c2Label" Grid.Column="1" Grid.Row="4" Opacity="0">c<Run BaselineAlignment="Subscript" FontSize="12">2</Run>=</TextBlock>
+        <TextBox x:Name="c1Box" Grid.Column="1" Grid.Row="5" TextWrapping="Wrap" Text="1" Opacity="0" IsEnabled="false" Panel.ZIndex="-1"/>
+        <TextBlock x:Name="c1Label" Grid.Column="1" Grid.Row="5" Opacity="0">c<Run BaselineAlignment="Subscript" FontSize="12">1</Run>=</TextBlock>
+        <TextBox x:Name="c0Box" Grid.Column="1" Grid.Row="6" TextWrapping="Wrap" Text="1" Opacity="0" IsEnabled="false" Panel.ZIndex="-1"/>
+        <TextBlock x:Name="c0Label" Grid.Column="1" Grid.Row="6" Opacity="0">c<Run BaselineAlignment="Subscript" FontSize="12">0</Run>=</TextBlock>
 
         <TextBox x:Name="a1Box" Grid.Column="2" Grid.Row="3" TextWrapping="Wrap" Text="1"/>
-        <TextBlock Grid.Column="2" Grid.Row="3">a<Run BaselineAlignment="Subscript" FontSize="12">1</Run>=</TextBlock>
+        <TextBlock x:Name="a1Label" Grid.Column="2" Grid.Row="3">a<Run BaselineAlignment="Subscript" FontSize="12">1</Run>=</TextBlock>
         <TextBox x:Name="a0Box" Grid.Column="2" Grid.Row="4" TextWrapping="Wrap" Text="1"/>
-        <TextBlock Grid.Column="2" Grid.Row="4">a<Run BaselineAlignment="Subscript" FontSize="12">0</Run>=</TextBlock>
-        <TextBox x:Name="b2Box" Grid.Column="2" Grid.Row="5" TextWrapping="Wrap" Text="1" />
-        <TextBlock Grid.Column="2" Grid.Row="5">b<Run BaselineAlignment="Subscript" FontSize="12">2</Run>=</TextBlock>
+        <TextBlock x:Name="a0Label" Grid.Column="2" Grid.Row="4">a<Run BaselineAlignment="Subscript" FontSize="12">0</Run>=</TextBlock>
+        <TextBox x:Name="b2Box" Grid.Column="2" Grid.Row="5" TextWrapping="Wrap" Text="1"/>
+        <TextBlock x:Name="b2Label" Grid.Column="2" Grid.Row="5">b<Run BaselineAlignment="Subscript" FontSize="12">2</Run>=</TextBlock>
         <TextBox x:Name="b1Box" Grid.Column="2" Grid.Row="6" TextWrapping="Wrap" Text="1"/>
-        <TextBlock Grid.Column="2" Grid.Row="6">b<Run BaselineAlignment="Subscript" FontSize="12">1</Run>=</TextBlock>
+        <TextBlock x:Name="b1Label" Grid.Column="2" Grid.Row="6">b<Run BaselineAlignment="Subscript" FontSize="12">1</Run>=</TextBlock>
         <TextBox x:Name="b0Box" Grid.Column="2" Grid.Row="7" TextWrapping="Wrap" Text="1"/>
-        <TextBlock Grid.Column="2" Grid.Row="7">b<Run BaselineAlignment="Subscript" FontSize="12">0</Run>=</TextBlock>
+        <TextBlock x:Name="b0Label" Grid.Column="2" Grid.Row="7">b<Run BaselineAlignment="Subscript" FontSize="12">0</Run>=</TextBlock>
+
+        <TextBox x:Name="d4Box" Grid.Column="2" Grid.Row="3" TextWrapping="Wrap" Text="1" Opacity="0" IsEnabled="false" Panel.ZIndex="-1"/>
+        <TextBlock x:Name="d4Label" Grid.Column="2" Grid.Row="3" Opacity="0">d<Run BaselineAlignment="Subscript" FontSize="12">4</Run>=</TextBlock>
+        <TextBox x:Name="d3Box" Grid.Column="2" Grid.Row="4" TextWrapping="Wrap" Text="1" Opacity="0" IsEnabled="false" Panel.ZIndex="-1"/>
+        <TextBlock x:Name="d3Label" Grid.Column="2" Grid.Row="4" Opacity="0">d<Run BaselineAlignment="Subscript" FontSize="12">3</Run>=</TextBlock>
+        <TextBox x:Name="d2Box" Grid.Column="2" Grid.Row="5" TextWrapping="Wrap" Text="1" Opacity="0" IsEnabled="false" Panel.ZIndex="-1"/>
+        <TextBlock x:Name="d2Label" Grid.Column="2" Grid.Row="5" Opacity="0">d<Run BaselineAlignment="Subscript" FontSize="12">2</Run>=</TextBlock>
+        <TextBox x:Name="d1Box" Grid.Column="2" Grid.Row="6" TextWrapping="Wrap" Text="1" Opacity="0" IsEnabled="false" Panel.ZIndex="-1"/>
+        <TextBlock x:Name="d1Label" Grid.Column="2" Grid.Row="6" Opacity="0">d<Run BaselineAlignment="Subscript" FontSize="12">1</Run>=</TextBlock>
+        <TextBox x:Name="d0Box" Grid.Column="2" Grid.Row="7" TextWrapping="Wrap" Text="1" Opacity="0" IsEnabled="false" Panel.ZIndex="-1"/>
+        <TextBlock x:Name="d0Label" Grid.Column="2" Grid.Row="7" Opacity="0">d<Run BaselineAlignment="Subscript" FontSize="12">0</Run>=</TextBlock>
 
         <TextBox x:Name="hBox" Grid.Column="0" Grid.Row="0" TextWrapping="Wrap" Text="0,1" Margin="50,-30,10,10"/>
         <TextBlock Grid.Column="0" Grid.Row="0" Margin="-80,-30,10,10">krok =</TextBlock>
@@ -103,7 +125,9 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-
+        <Button x:Name="Wypadkowa" Content="Edytuj wypadkową" Background="Lavender" Grid.Column="2" HorizontalAlignment="Center" Margin="20,15,0,0" Grid.Row="8" VerticalAlignment="Center" Width="150" Height="40" Click="Wypadkowa_Click" FontWeight="Bold" FontSize="14" FontStyle="Italic"></Button>
+        <Button x:Name="PIDGo" Content="Edytuj PID i Go" Background="Lavender" Grid.Column="2" HorizontalAlignment="Center" Margin="20,15,0,0" Grid.Row="8" VerticalAlignment="Center" Width="150" Height="40" Click="PIDGo_Click" FontWeight="Bold" FontSize="14" FontStyle="Italic" Opacity="0" Panel.ZIndex="-1"></Button>
+        
     </Grid>
 
 </Window>
