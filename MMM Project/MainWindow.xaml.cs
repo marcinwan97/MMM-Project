@@ -240,9 +240,9 @@ namespace MMM_Project
         {
             int rzad = 4;
             if (d4 == 0) rzad = 3;
-            else if (d3 == 0) rzad = 2;
-            else if (d2 == 0) rzad = 1;
-            else if (d1 == 0) rzad = 0;
+            if (d3 == 0 && d4 == 0) rzad = 2;
+            if (d2 == 0 && d3 == 0 && d4 == 0) rzad = 1;
+            if (d1 == 0 && d2 == 0 && d3 == 0 && d4 == 0) rzad = 0;
             calka_wy1.Add(0);
             calka_wy2.Add(0);
             calka_wy3.Add(0);
