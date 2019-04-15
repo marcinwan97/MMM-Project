@@ -233,25 +233,26 @@ namespace MMM_Project
 
         private void TablicujTrojkat()
         {
-            double a = 0;
+            //double a = 0;
             double szczyt = 0;
             for(double j=0; j<=tmax; j=j+t)
             { 
-            for (double i = a; i < t; i = i + h)
+            for (double i = 0; i < t-h; i = i + h)
             {
                 if (i > (t / 2))
                 {                    
                     wejscie.Add(ampl*(szczyt*2/t));
                     szczyt = szczyt - h;
                 }
-                else
+                else if(i==0) wejscie.Add(0);
+                    else
                 {
                     wejscie.Add(ampl*(i*2/t));
                         szczyt = i;
                 }
 
             }
-                a = h;
+            //a=h
             }
         }
 
