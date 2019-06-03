@@ -30,7 +30,7 @@ namespace MMM_Project
             ;
         }
 
-        public void SetData(List<double> wejscie, List<double> wyjscie)
+        public void SetData(List<double> wejscie, List<double> wyjscie, double krok, double czas)
         {
             MyModel = new PlotModel { Title = "Odpowiedź układu:" };
             MyModel.DefaultColors = new List<OxyColor>
@@ -47,9 +47,9 @@ namespace MMM_Project
             
             for (int i=0; i<wyjscie.Count; i++)
             {
-                OxyPlot.DataPoint o = new OxyPlot.DataPoint(i, wyjscie[i]);
+                OxyPlot.DataPoint o = new OxyPlot.DataPoint(i*krok, wyjscie[i]);
                 PunktyWy.Points.Add(o);
-                OxyPlot.DataPoint p = new OxyPlot.DataPoint(i, wejscie[i]);
+                OxyPlot.DataPoint p = new OxyPlot.DataPoint(i*krok, wejscie[i]);
                 PunktyWe.Points.Add(p);
             }
 

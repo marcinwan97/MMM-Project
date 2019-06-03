@@ -77,7 +77,7 @@ namespace MMM_Project
                 CalkujWejscie();
                 LiczWyjscie();
                 Output output = new Output();
-                output.SetData(wejscie, wyjscie);
+                output.SetData(wejscie, wyjscie, h, tmax);
                 output.Show();
             }
             catch { MessageBox.Show("Niewłaściwe parametry!"); } 
